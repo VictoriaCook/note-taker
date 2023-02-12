@@ -22,7 +22,7 @@ router.post('/notes', (req, res) => {
             return res.json(data)
         })
     } else {
-        res.error('Error in adding note');
+        res.error('Error in saving new note');
     }
 });
 
