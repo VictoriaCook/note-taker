@@ -26,6 +26,20 @@ router.post('/notes', (req, res) => {
     }
 });
 
-// insert delete route here
+router.delete('/notes/:id', (req, res) => {
+    var id = req.params.id;
+    dbReader.getData()
+    .then((parsedData) => {
+        for (var i = 0; i < parsedData.length; i++) {
+            if (parsedData[i].id == id) {
+                parsedData.splice(i, 1)
+                console.log(parsedData);
+                dbReader.write(parsedData);
+                return res.json(true);
+            }
+        }
+        return res.status(404).json(false);
+    })  
+});
 
 module.exports = router;
